@@ -1,6 +1,6 @@
-
+const server_url= import.meta.env.VITE_URL_API_FILMS
 export function fetchMovies() {
-  return fetch("http://localhost:3000/movies")
+  return fetch(server_url)
     .then(response => response.json())
     .catch(err => {
       console.error("Errore: " + err);
