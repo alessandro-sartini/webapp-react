@@ -6,21 +6,28 @@ const GlobalContext = createContext();
 function GlobalProvider({ children }) {
   const [movies, setMovies] = useState([]);
 
-  useEffect(() => {
-    apiService.fetchMovies()
-      .then((data) => {
-        setMovies(data);
-      })
-      .catch((err) => {
-        console.error("Errore nel fetch dei film: ", err);
-      });
-  }, []);
+  // useEffect(() => {
+  //   apiService.fetchMovies()
+  //     .then((data) => {
+  //       setMovies(data);
+  //     })
+  //     .catch((err) => {
+  //       console.error("Errore nel fetch dei film: ", err);
+  //     });
+  // }, []);
+
+ async function fetchDataMovies() {
+    const data = await apiService.fetchMovies();
+    setMovies(data);
+  }
+
+
 
   const variables = {
     movies,
     // movieID,
     // fetchDataID,
-    // fetchDataMovies,
+    fetchDataMovies,
   };
   return (
     <GlobalContext.Provider value={variables}>

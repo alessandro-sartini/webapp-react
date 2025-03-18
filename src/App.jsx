@@ -7,27 +7,7 @@ import { useEffect } from "react";
 // import { fetchMovies, fetchMovieID } from './api/apiService';
 
 function App() {
-  //  async function fetchDataMovies() {
-  //    const data = await fetchMovies()
-  //    console.log(data)
-  //  }
-  //   fetchDataMovies();
-
-  //   async function fetchDataID() {
-  //     const data = await fetchMovieID();
-  //     console.log(data);
-  //   }
-  //   fetchDataID();
-  // Test di fetch dei dati
-//  const { movies, movieID, fetchDataMovies, fetchDataID } = useGlobalContext();
   
-  
-
-
-  // const { movies } = useGlobalContext();
-   
-  // console.log(movies)
-
 
   return (
     <GlobalProvider>
