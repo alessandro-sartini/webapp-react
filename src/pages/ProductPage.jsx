@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useGlobalContext } from "../context/GlobalContext";
-import ReviewMovie from "./../components/ReviewMovie";
+import ReviewMovie from'../components/ReviewMovie'
+import ReviewAddForm from "./../components/ReviewAddForm";
 
 export default function ProductPage() {
   const { id } = useParams();
@@ -27,6 +28,8 @@ export default function ProductPage() {
       </div>
       <h2 className="my-4 text-primary">Recensioni Utenti:</h2>
       <div className="row row-cols-2 my-3">{fetchReviews()}</div>
+
+      <ReviewAddForm/>
     </div>
   );
 }
