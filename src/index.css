@@ -2,3 +2,11 @@
   color: blue !important;
 } */
 
+/* .card-home {
+  height: 45rem;
+} */
+.img-film {
+  width: 350px;
+  height: 500px;
+  object-fit: cover;
+}
