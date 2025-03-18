@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 
 const server_url= import.meta.env.VITE_URL_API_FILMS
 // export function fetchMovies() {

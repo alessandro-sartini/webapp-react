@@ -25,7 +25,7 @@ export default function ProductPage() {
 
         <img className="img-film" src={movie.image} alt={movie.title} />
       </div>
-      <h2 className='my-4'>Recensioni Utenti</h2>
+      <h2 className="my-4 text-primary">Recensioni Utenti:</h2>
       <div className="row row-cols-2 my-3">{fetchReviews()}</div>
     </div>
   );
