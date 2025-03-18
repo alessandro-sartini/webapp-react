@@ -1,3 +1,5 @@
+import { useParams } from "react-router-dom";
+
 const server_url= import.meta.env.VITE_URL_API_FILMS
 // export function fetchMovies() {
 //   return fetch(server_url)
@@ -8,17 +10,31 @@ const server_url= import.meta.env.VITE_URL_API_FILMS
 // }
  async function fetchMovies() {
   try {
-    const response = await fetch("http://localhost:3000/movies");
+    const response = await fetch(server_url);
     return await response.json();
   } catch (err) {
     console.error("Errore: " + err);
   }
 }
 
+// const { id } = useParams();
+async function fetchMovieID(id) {
+  
+  try {
+    const response= fetch(server_url+'/'+id)
+    return (await response).json();
+  } catch (err) {
+    
+    console.error(err);
+  }
+  
+
+}
 
 
 const apiService = {
-  fetchMovies
+  fetchMovies,
+  fetchMovieID
 };
 
 export default apiService;

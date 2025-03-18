@@ -1,10 +1,12 @@
 import { createContext, useState, useContext, useEffect } from "react";
 import apiService from "../api/apiService";
+import { useParams } from "react-router-dom";
 
 const GlobalContext = createContext();
 
 function GlobalProvider({ children }) {
   const [movies, setMovies] = useState([]);
+  const [movie, setMovie] = useState({});
 
   // useEffect(() => {
   //   apiService.fetchMovies()
@@ -22,11 +24,20 @@ function GlobalProvider({ children }) {
   }
 
 
+  // const { id } = useParams();
+
+ async function fetchDataMoviesID(id) {
+    const data = await apiService.fetchMovieID(id);
+    setMovie(data);
+  }
+
+
 
   const variables = {
     movies,
-    // movieID,
+    movie,
     // fetchDataID,
+    fetchDataMoviesID,
     fetchDataMovies,
   };
   return (

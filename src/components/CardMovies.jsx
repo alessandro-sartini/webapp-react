@@ -12,7 +12,7 @@ export default function CardMovies({ movie }) {
           <span> {movie.genre}</span> 
           
         </p>
-        <Link to={`movie/${id}`}>Apri la pagina dedicata</Link> 
+        <Link to={`movie/${movie.id}`}>Apri la pagina dedicata</Link> 
 
       </div>
     </div>
