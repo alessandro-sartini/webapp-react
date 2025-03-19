@@ -1,19 +1,13 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 
-export default function ReviewAddForm() {
+export default function ReviewAddForm({ onReviewAdded }) {
   const server_url = import.meta.env.VITE_URL_API_FILMS;
-
   const { id } = useParams();
+
   const [text, setText] = useState("");
-  const [vote, setVote] = useState(undefined);
+  const [vote, setVote] = useState("");
   const [name, setName] = useState("");
-  // const [body, setBody] = useState({
-  //   movie_id: id,
-  //   name: name,
-  //   vote: vote,
-  //   text: text,
-  // });
 
   const reviewData = {
     movie_id: id,
@@ -21,6 +15,7 @@ export default function ReviewAddForm() {
     vote,
     text,
   };
+
   const options = {
     method: "POST",
     headers: {
@@ -30,27 +25,30 @@ export default function ReviewAddForm() {
   };
 
   async function fetchReview() {
-
-    const data = await fetch(server_url + "/reviews", options);
-
-    const update = await reviewData;
-    console.log(update);
-    return await data.json();
+    try {
+      const response = await fetch(server_url + "/reviews", options);
+      if (response.ok) {
+        setName("");
+        setVote("");
+        setText("");
+        onReviewAdded(); // Notifica il ProductPage di ricaricare le recensioni
+      }
+    } catch (err) {
+      console.error(err);
+    }
   }
-  // try {
-
-  // } catch (err) {
-  //   console.error(err);
-  // }
 
   return (
     <div className="container mt-5">
       <h3 className="mb-4">Lascia una recensione</h3>
-      <form onSubmit={() => fetchReview()}>
+      <form
+        onSubmit={(event) => {
+          event.preventDefault();
+          fetchReview();
+        }}
+      >
         <div className="mb-3">
-          <label htmlFor="name" className="form-label">
-            Nome
-          </label>
+          <label htmlFor="name" className="form-label">Nome</label>
           <input
             type="text"
             id="name"
@@ -63,9 +61,7 @@ export default function ReviewAddForm() {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="reviewText" className="form-label">
-            Recensione
-          </label>
+          <label htmlFor="reviewText" className="form-label">Recensione</label>
           <textarea
             id="reviewText"
             className="form-control"
@@ -78,9 +74,7 @@ export default function ReviewAddForm() {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="vote" className="form-label">
-            Voto
-          </label>
+          <label htmlFor="vote" className="form-label">Voto</label>
           <select
             id="vote"
             className="form-select"
@@ -90,20 +84,12 @@ export default function ReviewAddForm() {
           >
             <option value="">Seleziona un voto</option>
             {[1, 2, 3, 4, 5].map((num) => (
-              <option key={num} value={num}>
-                {num}
-              </option>
+              <option key={num} value={num}>{num}</option>
             ))}
           </select>
         </div>
 
-        <button
-          type="submit"
-          className="btn
-        btn-primary"
-        >
-          Invia
-        </button>
+        <button type="submit" className="btn btn-primary">Invia</button>
       </form>
     </div>
   );

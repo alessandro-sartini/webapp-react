@@ -1,16 +1,18 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useGlobalContext } from "../context/GlobalContext";
-import ReviewMovie from'../components/ReviewMovie'
+import ReviewMovie from '../components/ReviewMovie';
 import ReviewAddForm from "./../components/ReviewAddForm";
 
 export default function ProductPage() {
   const { id } = useParams();
   const { movie, fetchDataMoviesID } = useGlobalContext();
 
+  const [reloadTrigger, setReloadTrigger] = useState(false);
+
   useEffect(() => {
     fetchDataMoviesID(id);
-  }, [id]);
+  }, [id, reloadTrigger]); // Aggiorniamo anche quando reloadTrigger cambia
 
   function fetchReviews() {
     return movie.reviews?.map((rev) => {
@@ -23,13 +25,14 @@ export default function ProductPage() {
       <div className="d-flex flex-column justify-content-center align-items-center">
         <h1>{movie.title}</h1>
         <h2 className="m-3">{movie.director}</h2>
-
         <img className="img-film" src={movie.image} alt={movie.title} />
       </div>
+
       <h2 className="my-4 text-primary">Recensioni Utenti:</h2>
       <div className="row row-cols-2 my-3">{fetchReviews()}</div>
 
-      <ReviewAddForm/>
+      {/* Passiamo la funzione di reload alla ReviewAddForm */}
+      <ReviewAddForm onReviewAdded={() => setReloadTrigger(prev => !prev)} />
     </div>
   );
 }

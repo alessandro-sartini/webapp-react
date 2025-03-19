@@ -27,9 +27,11 @@ async function fetchMovieID(id) {
     
     console.error(err);
   }
-  
-
 }
+
+
+
+
 
 
 const apiService = {
