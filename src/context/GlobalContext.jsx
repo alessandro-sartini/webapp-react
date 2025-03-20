@@ -5,6 +5,8 @@ import { useParams } from "react-router-dom";
 const GlobalContext = createContext();
 
 function GlobalProvider({ children }) {
+
+  const [ isLoading, setIsLoading ] = useState(false)
   const [movies, setMovies] = useState([]);
   const [movie, setMovie] = useState({});
 
@@ -19,15 +21,17 @@ function GlobalProvider({ children }) {
   // }, []);
 
  async function fetchDataMovies() {
-    const data = await apiService.fetchMovies();
+   const data = await apiService.fetchMovies(setIsLoading);
+  //  console.log(isLoading)
     setMovies(data);
   }
 
 
   // const { id } = useParams();
 
- async function fetchDataMoviesID(id) {
-    const data = await apiService.fetchMovieID(id);
+ async function fetchDataMoviesID(id)
+ {
+    const data = await apiService.fetchMovieID(id , setIsLoading);
     setMovie(data);
   }
 
@@ -39,6 +43,8 @@ function GlobalProvider({ children }) {
     // fetchDataID,
     fetchDataMoviesID,
     fetchDataMovies,
+    isLoading,
+    setIsLoading
   };
   return (
     <GlobalContext.Provider value={variables}>

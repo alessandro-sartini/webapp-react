@@ -31,7 +31,7 @@ export default function ReviewAddForm({ onReviewAdded }) {
         setName("");
         setVote("");
         setText("");
-        onReviewAdded(); // Notifica il ProductPage di ricaricare le recensioni
+        onReviewAdded(); 
       }
     } catch (err) {
       console.error(err);

@@ -5,6 +5,7 @@ import ReviewMovie from '../components/ReviewMovie';
 import ReviewAddForm from "./../components/ReviewAddForm";
 
 export default function ProductPage() {
+
   const { id } = useParams();
   const { movie, fetchDataMoviesID } = useGlobalContext();
 
@@ -12,7 +13,7 @@ export default function ProductPage() {
 
   useEffect(() => {
     fetchDataMoviesID(id);
-  }, [id, reloadTrigger]); // Aggiorniamo anche quando reloadTrigger cambia
+  }, [id, reloadTrigger]); 
 
   function fetchReviews() {
     return movie.reviews?.map((rev) => {
@@ -31,8 +32,8 @@ export default function ProductPage() {
       <h2 className="my-4 text-primary">Recensioni Utenti:</h2>
       <div className="row row-cols-2 my-3">{fetchReviews()}</div>
 
-      {/* Passiamo la funzione di reload alla ReviewAddForm */}
       <ReviewAddForm onReviewAdded={() => setReloadTrigger(prev => !prev)} />
     </div>
   );
 }
+

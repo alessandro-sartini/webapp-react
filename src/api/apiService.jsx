@@ -1,6 +1,7 @@
 // import { useParams } from "react-router-dom";
+// import { useGlobalContext  } from "../context/GlobalContext.jsx";
 
-const server_url= import.meta.env.VITE_URL_API_FILMS
+const server_url = import.meta.env.VITE_URL_API_FILMS;
 // export function fetchMovies() {
 //   return fetch(server_url)
 //     .then(response => response.json())
@@ -8,51 +9,41 @@ const server_url= import.meta.env.VITE_URL_API_FILMS
 //       console.error("Errore: " + err);
 //     });
 // }
- async function fetchMovies() {
+async function fetchMovies(setIsLoading) {
+
   try {
+    setIsLoading(true);
+  
     const response = await fetch(server_url);
     return await response.json();
   } catch (err) {
     console.error("Errore: " + err);
+  } finally {
+    setIsLoading(false);
   }
 }
 
 // const { id } = useParams();
-async function fetchMovieID(id) {
-  
+async function fetchMovieID(id, setIsLoading) {
   try {
-    const response= fetch(server_url+'/'+id)
+        setIsLoading(true);
+
+    const response = fetch(server_url + "/" + id);
     return (await response).json();
   } catch (err) {
-    
     console.error(err);
+  } finally {
+        setIsLoading(false);
+
   }
 }
 
-
-
-
-
-
 const apiService = {
   fetchMovies,
-  fetchMovieID
+  fetchMovieID,
 };
 
 export default apiService;
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // export default function fetchMovies() {
 //   fetch("http://localhost:3000/movies")
@@ -67,7 +58,7 @@ export default apiService;
 // function fetchMovies() {
 //   return fetch("http://localhost:3000/movies")
 //     .then(response => {
-     
+
 //       response.json();
 //     })
 //     .then(data => setMovies(data))
@@ -86,7 +77,7 @@ export default apiService;
 // function fetchMovieID() {
 //   return fetch("http://localhost:3000/movies/2")
 //     .then(response => {
-     
+
 //       return response.json();
 //     })
 //     .catch(err => {
@@ -101,4 +92,3 @@ export default apiService;
 //     console.error("Errore: " + err);
 //   }
 // }
-
