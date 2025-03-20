@@ -3,7 +3,8 @@ import DefaultLayout from "./layout/DefaultLayout";
 import HomePage from "./pages/HomePage";
 import ProductPage from "./pages/ProductPage";
 import { useGlobalContext, GlobalProvider } from "./context/GlobalContext";
-import { useEffect } from "react";
+// import { useEffect } from "react";
+import AddMoviePage from "./pages/AddMoviePage";
 // import { fetchMovies, fetchMovieID } from './api/apiService';
 
 function App() {
@@ -16,6 +17,8 @@ function App() {
           <Route Component={DefaultLayout}>
             <Route path="/" Component={HomePage} />
             <Route path="/movie/:id" Component={ProductPage} />
+            <Route path="/movie/add" Component={AddMoviePage} />
+            
           </Route>
         </Routes>
       </BrowserRouter>
