@@ -2,19 +2,16 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 export default function AddMoviePage() {
-
-
   const initialData = {
     title: "",
     director: "",
     genre: "",
+    release_year:'',
     image: null,
     abstract: "",
-    imageName: "",
   };
 
-     const [formData, setFormData] = useState(initialData);
-    
+  const [formData, setFormData] = useState(initialData);
 
   const navigate = useNavigate();
   const setFieldValue = (e) => {
@@ -33,8 +30,7 @@ export default function AddMoviePage() {
     }
   };
 
-    function handleSubmit(e) {
-      
+  function handleSubmit(e) {
     e.preventDefault();
     axios
       .post("http://localhost:3000/movies", formData, {
@@ -91,8 +87,9 @@ export default function AddMoviePage() {
             <input
               type="number"
               className="form-control"
-              name="releaseYearNumber"
+              name="release_year"
               onChange={setFieldValue}
+              min={1901}
               required
             />
           </div>

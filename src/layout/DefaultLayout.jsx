@@ -4,7 +4,7 @@ import Loader from "./../components/headerComponents/Loader";
 import { useGlobalContext } from "../context/GlobalContext";
 
 export default function DefaultLayout() {
-  const{isLoading}=useGlobalContext()
+  const { isLoading } = useGlobalContext();
   return (
     <>
       <Header />

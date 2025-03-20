@@ -30,7 +30,14 @@ export default function ProductPage() {
       </div>
 
       <h2 className="my-4 text-primary">Recensioni Utenti:</h2>
-      <div className="row row-cols-2 my-3">{fetchReviews()}</div>
+      <div className="row row-cols-2 my-3">
+        
+       {(movie.reviews?.length === 0 ) && (
+          <p className="text-muted">Non ci sono ancora recensioni per questo film.</p>
+        )}
+        {movie.reviews?.length > 0 && fetchReviews()}
+
+      </div>
 
       <ReviewAddForm onReviewAdded={() => setReloadTrigger(prev => !prev)} />
     </div>

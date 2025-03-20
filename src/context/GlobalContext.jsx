@@ -1,6 +1,5 @@
 import { createContext, useState, useContext, useEffect } from "react";
 import apiService from "../api/apiService";
-import { useParams } from "react-router-dom";
 
 const GlobalContext = createContext();
 
