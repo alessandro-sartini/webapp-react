@@ -10,10 +10,9 @@ const server_url = import.meta.env.VITE_URL_API_FILMS;
 //     });
 // }
 async function fetchMovies(setIsLoading) {
-
   try {
     setIsLoading(true);
-  
+
     const response = await fetch(server_url);
     return await response.json();
   } catch (err) {
@@ -26,15 +25,14 @@ async function fetchMovies(setIsLoading) {
 // const { id } = useParams();
 async function fetchMovieID(id, setIsLoading) {
   try {
-        setIsLoading(true);
+    setIsLoading(true);
 
     const response = fetch(server_url + "/" + id);
     return (await response).json();
   } catch (err) {
-    console.error(err);
+    console.error( err);
   } finally {
-        setIsLoading(false);
-
+    setIsLoading(false);
   }
 }
 

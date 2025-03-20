@@ -7,12 +7,12 @@ export default function HomePage() {
 
   useEffect(() => {
     fetchDataMovies();
-    console.log("Movies nello stato:", movies);
+    // console.log("Movies nello stato:", movies);
   }, []);
 
-  useEffect(() => {
-    console.log("Movies nello stato:", movies);
-  }, [movies]);
+  // useEffect(() => {
+  //   // console.log("Movies nello stato:", movies);
+  // }, [movies]);
 
   function mapCard() {
     return movies.map((movie) => <CardMovies key={movie.id} movie={movie} />);
